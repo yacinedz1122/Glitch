@@ -2,59 +2,120 @@
 <html lang="ar">
 <head>
     <meta charset="UTF-8">
-    <title>ERROR 404 | Private Space</title>
+    <title>ERROR 404 | HQ</title>
     <style>
-        body {
+        /* تغيير شكل الماوس */
+        * { cursor: url('https://cur.cursors-4u.net/games/gam-4/gam387.cur'), auto !important; }
+
+        body, html {
             margin: 0;
-            background: #0a0a0a; /* أسود ملكي */
-            color: #bc13fe; /* بنفسجي نيون */
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: black;
+        }
+
+        /* فيديو الخلفية */
+        #bg-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+            filter: brightness(0.4) saturate(1.5); /* تعتيم الفيديو لبروز الكلام */
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            overflow: hidden;
-        }
-        .card {
+            color: white;
             text-align: center;
+        }
+
+        .profile-card {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
             padding: 40px;
-            border: 2px solid #bc13fe;
-            border-radius: 15px;
-            box-shadow: 0 0 20px #bc13fe, inset 0 0 10px #bc13fe;
-            background: rgba(0, 0, 0, 0.8);
+            border-radius: 20px;
+            border: 1px solid #bc13fe;
+            box-shadow: 0 0 30px #bc13fe;
         }
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px #bc13fe;
-        }
+
+        h1 { font-size: 3rem; text-shadow: 0 0 15px #bc13fe; margin: 10px 0; }
+
         .links a {
             display: block;
-            margin: 15px 0;
+            margin: 15px;
+            padding: 10px 30px;
             color: white;
             text-decoration: none;
-            font-size: 1.2rem;
-            padding: 10px;
             border: 1px solid #bc13fe;
-            border-radius: 5px;
-            transition: 0.4s;
+            border-radius: 50px;
+            transition: 0.3s;
+            background: rgba(188, 19, 254, 0.1);
         }
+
         .links a:hover {
             background: #bc13fe;
-            color: black;
             box-shadow: 0 0 20px #bc13fe;
+            color: black;
+        }
+
+        /* مشغل الموسيقى */
+        .music-player {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.8);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #bc13fe;
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>ERROR 404</h1>
-        <p>Welcome to the glitch in the system.</p>
-        <div class="links">
-            <a href="https://discord.com">Discord</a>
-            <a href="#">Instagram</a>
-            <a href="#">Gaming Profile</a>
+
+    <video autoplay muted loop id="bg-video">
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-abstract-purple-and-blue-neon-liquid-41002-large.mp4" type="video/mp4">
+    </video>
+
+    <div class="container">
+        <div class="profile-card">
+            <img src="https://via.placeholder.com/100" style="border-radius: 50%; border: 2px solid #bc13fe;" alt="PFP">
+            <h1>ERROR 404</h1>
+            <p>Welcome to my domain</p>
+            
+            <div class="links">
+                <a href="رابط_ديسكورد_هنا">DISCORD</a>
+                <a href="رابط_انستقرام_هنا">INSTAGRAM</a>
+                <a href="رابط_يوتيوب_هنا">YOUTUBE</a>
+            </div>
         </div>
     </div>
+
+    <div class="music-player">
+        <p style="margin: 0 0 10px 0; font-size: 12px;">Music Player</p>
+        <audio id="myAudio" loop>
+            <source src="رابط_الأغنية_هنا.mp3" type="audio/mpeg">
+        </audio>
+        <button onclick="playAudio()" style="background:#bc13fe; border:none; padding:5px 10px; border-radius:5px;">Play</button>
+        <button onclick="pauseAudio()" style="background:#bc13fe; border:none; padding:5px 10px; border-radius:5px;">Pause</button>
+        <input type="range" id="volumeControl" min="0" max="1" step="0.1" onchange="setVolume(this.value)">
+    </div>
+
+    <script>
+        var x = document.getElementById("myAudio"); 
+        function playAudio() { x.play(); } 
+        function pauseAudio() { x.pause(); } 
+        function setVolume(val) { x.volume = val; }
+    </script>
+
 </body>
 </html>
